@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>First lesson</title>
+  </head>
+  <body>
+    <div id="breadcrumbs">
+    <a href="/">Home</a>
+    
+        
+    
+        
+            / <a href="/lesson">Lesson</a>
+        
+    
+        
+            / <a href="/2021-06-06-first-lesson">2021 06 06 first lesson</a>
+        
+    
+        
+    
+</div>
+    <h1>First lesson</h1>
+    <p class="date">2021-06-06 13:56:01.011 &#43;0000 UTC</p>
+    <p class="description">Some description</p>
+    <article class="content">
+      <p><img src="/img/machine_icon.svg" alt="Logo Sixense"></p>
+<h1 id="beyond-monitoring-backend">Beyond monitoring backend</h1>
+<h2 id="description">Description</h2>
+<p>Beyond monitoring backend services.</p>
+<h2 id="installation">Installation</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install
+</code></pre></div><h2 id="setting-environment-values">Setting environment values</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Set a development template for .env file</span>
+cp resources/env/development.env .env
+</code></pre></div><h2 id="start-dependencies-for-local-development">Start dependencies for local development</h2>
+<p>The previous step is a mandatory to launch servers locally.</p>
+<ul>
+<li>At first start rabbitmq locally using docker</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker-compose up -d rabbitmq
+</code></pre></div><ul>
+<li>When rabbitmq is started you can start database locally using docker</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker-compose up -d mongodb
+</code></pre></div><p><strong>BE CAREFUL</strong>: Do not launch all containers at the same time (<code>docker-compose up</code>), it will cause the backend server to stop (due to connection timeout to rabbitMQ)</p>
+<h2 id="seed-database">Seed database</h2>
+<ul>
+<li>Run seed data script <code>npm run db:seed</code></li>
+</ul>
+<p>Connection string is already set in <code>.env</code> file
+Inserted data seed files can be found in <code>/tools/seed/**/*.ts</code>.
+e.g: You can find users (and its unencrypted password) in <code>/tools/seed/2-users/users.ts</code></p>
+<h2 id="running-the-app">Running the app</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># development</span>
+$ npm run start
+
+<span style="color:#75715e"># watch mode</span>
+$ npm run start:dev
+
+<span style="color:#75715e"># production mode</span>
+$ npm run start:prod
+</code></pre></div><h2 id="test">Test</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># unit tests</span>
+$ npm run test
+
+<span style="color:#75715e"># e2e tests</span>
+$ npm run test:e2e
+
+<span style="color:#75715e"># test coverage</span>
+$ npm run test:cov
+</code></pre></div><h2 id="seed-database-1">Seed database</h2>
+<ol>
+<li>Set database connection string in <code>.env</code> file</li>
+<li>Run seed data script <code>npm run db:seed</code></li>
+</ol>
+<h2 id="start-dependencies-for-local-development-1">Start dependencies for local development</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># To start database locally using docker</span>
+docker-compose up -d mongodb
+<span style="color:#75715e"># docker-compose -f docker-compose.infra.yml  up -d mongodb</span>
+
+<span style="color:#75715e"># To start rabbitmq locally using docker</span>
+docker-compose up -d rabbitmq
+</code></pre></div><h2 id="internationalization">Internationalization</h2>
+<h3 id="extract-translation-strings-from-code">Extract translation strings from code</h3>
+<p>Following the command parse the code src folder and extract the translation string from
+the code. If you have some manual translations to exact then add them in <code>src/i18n.ts</code>
+file. They are extracted and merged in translation resource files stored under <code>locales/$lang</code> folder.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm run i18n:extract
+</code></pre></div><p><strong>Note:</strong> Do not do any modifications (or adding new translation terms) directly in the locales/$lang/$namespace.json files. On translation extractions or synchronization from POEditor, they will be overridden.</p>
+<p>To Know more about usage, follow the following library documentation.</p>
+<ul>
+<li><a href="https://www.i18next.com/translation-function/essentials">i18next</a></li>
+</ul>
+<p>To translate string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TypeScript" data-lang="TypeScript"><span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">i18n</span>: <span style="color:#66d9ef">I18nService</span>) {}
+...
+
+<span style="color:#a6e22e">i18n</span>.<span style="color:#a6e22e">t</span>(<span style="color:#e6db74">&#34;my string to translate&#34;</span>, { <span style="color:#a6e22e">lang</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;fr&#39;</span> });
+</code></pre></div><h2 id="more-information">More information</h2>
+<ul>
+<li><a href="./resources/docs/Storage.md">Application file storage</a></li>
+</ul>
+
+    </article>
+  </body>
+</html>

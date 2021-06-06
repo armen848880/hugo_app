@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+	<meta name="generator" content="Hugo 0.68.3" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -10,15 +11,28 @@
   <body>
   <h1>NodeJS foxusgroup lessons</h1>
   <ul>
-    {{ range .Site.RegularPages }}
+    
     <li>
-      <a href="{{ .RelPermalink }}">
-        {{ .Title }}
+      <a href="/lesson/2021-06-06-some-test-lesson/">
+        Some test lesson
       </a>
     </li>
-    {{ end }}
+    
+    <li>
+      <a href="/lesson/2021-06-06-first-lesson/">
+        First lesson
+      </a>
+    </li>
+    
   </ul>
 
-  {{ partial "breadcrumbs.html" . }}
+  <div id="breadcrumbs">
+    <a href="/">Home</a>
+    
+        
+    
+        
+    
+</div>
 </body>
 </html>

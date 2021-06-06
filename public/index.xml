@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Jun 2021 15:13:29 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Some test lesson</title>
+      <link>http://example.org/lesson/2021-06-06-some-test-lesson/</link>
+      <pubDate>Sun, 06 Jun 2021 15:13:29 +0000</pubDate>
+      
+      <guid>http://example.org/lesson/2021-06-06-some-test-lesson/</guid>
+      <description>sdcsdcsdcsdc</description>
+    </item>
+    
+    <item>
+      <title>First lesson</title>
+      <link>http://example.org/lesson/2021-06-06-first-lesson/</link>
+      <pubDate>Sun, 06 Jun 2021 13:56:01 +0000</pubDate>
+      
+      <guid>http://example.org/lesson/2021-06-06-first-lesson/</guid>
+      <description>Beyond monitoring backend Description Beyond monitoring backend services.
+Installation $ npm install Setting environment values # Set a development template for .env file cp resources/env/development.env .env Start dependencies for local development The previous step is a mandatory to launch servers locally.
+ At first start rabbitmq locally using docker  docker-compose up -d rabbitmq  When rabbitmq is started you can start database locally using docker  docker-compose up -d mongodb BE CAREFUL: Do not launch all containers at the same time (docker-compose up), it will cause the backend server to stop (due to connection timeout to rabbitMQ)</description>
+    </item>
+    
+  </channel>
+</rss>
