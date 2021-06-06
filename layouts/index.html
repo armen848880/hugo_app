@@ -13,7 +13,7 @@
     {{ range (where .Pages "Section" "lesson") }}
     <li>
       <a href="{{ .RelPermalink }}">
-        {{ .Title }}
+        {{ .Title }} {{ .Name }}
       </a>
     </li>
     {{ end }}
